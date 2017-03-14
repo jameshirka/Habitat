@@ -2,7 +2,7 @@
 ID: "1311f5a5-f4bc-4abc-9eee-cf02203aa50b"
 Parent: "e14fa28f-6541-459b-81e6-bc5a812868b9"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
-Path: /sitecore/templates/Foundation/Tagging/_HasTags/Tag
+Path: /sitecore/templates/Foundation/Tagging/_HasTags/Tags
 DB: master
 Languages:
 - Language: en

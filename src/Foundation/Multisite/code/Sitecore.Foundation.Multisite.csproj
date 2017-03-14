@@ -114,8 +114,11 @@
     <Compile Include="Commands\CreateRenderingSettings.cs" />
     <Compile Include="Commands\OpenExperienceEditor.cs" />
     <Compile Include="Dialogs\DatasourceSettingsPage.cs" />
+    <Compile Include="Pipelines\ProcessSiteSource.cs" />
     <Compile Include="Pipelines\ResolveContentLanguage.cs" />
     <Compile Include="Providers\DatasourceConfigurationService.cs" />
+    <Compile Include="Providers\FieldDatasourceProvider.cs" />
+    <Compile Include="Providers\IFieldDatasourceProvider.cs" />
     <Compile Include="Providers\ISiteSettingsProvider.cs" />
     <Compile Include="Pipelines\GetDatasourceLocationAndTemplateFromSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -180,4 +183,3 @@
   </Target>
   -->
 </Project>
-

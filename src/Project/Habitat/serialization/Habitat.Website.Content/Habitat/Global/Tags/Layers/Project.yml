@@ -1,0 +1,21 @@
+﻿---
+ID: "c0ecb715-0c57-4b90-8853-232e92002269"
+Parent: "9f41d591-8f34-476c-b334-c6c02f24f3ec"
+Template: "348951ec-7f21-4dfc-804b-c25d022c9436"
+Path: /sitecore/content/Habitat/Global/Tags/Layers/Project
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170208T043948Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "9909bcdb-3293-4158-958a-9aa62ba4a8db"
+      Hint: Tag
+      Value: Project
