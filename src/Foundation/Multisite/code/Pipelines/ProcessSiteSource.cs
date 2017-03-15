@@ -44,11 +44,7 @@ namespace Sitecore.Foundation.Multisite.Pipelines
 
             var datasourceLocation = datasourceLocations.FirstOrDefault();
 
-            if (datasourceLocation != null)
-            {
-                args.Source = datasourceLocation.Paths.FullPath;
-
-            }
+            args.Source = datasourceLocation?.Paths?.FullPath ?? string.Empty;
         }
 
         //this is a hack to support treelist fields that only run the GetLookupSourceItems pipeline if the source contains a query:
