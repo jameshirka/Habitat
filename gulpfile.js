@@ -468,3 +468,45 @@ gulp.task("Package-Generate", function (callback) {
         "Package-Clean",
         callback);
 });
+
+
+/*****************************
+ Package
+*****************************/
+gulp.task("CI-Package", function (callback) {
+    runSequence(
+        "CI-Clean",
+        "CI-Publish",
+        "Package-Prepare-Package-Files",
+        "CI-Prepare-Unicorn",
+        callback);
+});
+
+gulp.task("CI-Clean", function (callback) {
+    rimrafDir.sync(path.resolve("./Website"));
+    rimrafDir.sync(path.resolve("./Data/unicorn"));
+    callback();
+});
+
+gulp.task("CI-Publish", function (callback) {
+    config.websiteRoot = path.resolve("./Website");
+    config.buildConfiguration = "Release";
+    fs.mkdirSync(config.websiteRoot);
+    runSequence(
+        "Build-Solution",
+        "Publish-Foundation-Projects",
+        "Publish-Feature-Projects",
+        "Publish-Project-Projects", callback);
+});
+
+
+gulp.task("CI-Prepare-Unicorn", function (callback) {
+    var allowedPatterns = [
+        "./src/**/serialization/**/*.yml",
+        "!./src/**/serialization/Roles/**/*.yml",
+        "!./src/**/serialization/Users/**/*.yml"
+    ];
+    return gulp.src(allowedPatterns)
+        .pipe(gulp.dest("./Data/unicorn/"));
+});
+
