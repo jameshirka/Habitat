@@ -477,9 +477,23 @@ gulp.task("CI-Package", function (callback) {
     runSequence(
         "CI-Clean",
         "CI-Publish",
-        "Package-Prepare-Package-Files",
+        "CI-Package-Prepare-Package-Files",
         "CI-Prepare-Unicorn",
         callback);
+});
+
+gulp.task("CI-Package-Prepare-Package-Files", function (callback) {
+    var excludeList = [
+        config.websiteRoot + "\\bin\\{Sitecore,Lucene,Newtonsoft,System,Microsoft.Web.Infrastructure}*dll",
+        config.websiteRoot + "\\compilerconfig.json.defaults",
+        config.websiteRoot + "\\packages.config",
+        config.websiteRoot + "\\App_Config\\Include\\{Feature,Foundation,Project}\\z.*DevSettings.config",
+        "!" + config.websiteRoot + "\\bin\\Sitecore.Support*dll",
+        "!" + config.websiteRoot + "\\bin\\Sitecore.{Feature,Foundation,Habitat,Demo,Common}*dll"
+    ];
+    console.log(excludeList);
+
+    return gulp.src(excludeList, { read: false }).pipe(rimraf({ force: true }));
 });
 
 gulp.task("CI-Clean", function (callback) {
