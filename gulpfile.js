@@ -113,6 +113,40 @@ gulp.task("06-Deploy-Transforms", function () {
 });
 
 /*****************************
+  Swap Lucene for SOLR
+*****************************/
+
+gulp.task("Setup-Solr-Config", function (callback) {
+    return runSequence(
+        "Disable-Lucene-Config",
+        "Enable-SOLR-Config", callback);
+});
+
+gulp.task("Disable-Lucene-Config", function () {
+    var location = config.websiteRoot + "/App_Config/Include/";
+    var luceneFiles = location + "**/*Lucene*config";
+
+    return gulp.src(luceneFiles)
+        .pipe(rimraf({ force: true }))
+        .pipe(rename(function (file) {
+            file.extname = ".config.disabled";
+        })).pipe(gulp.dest(location));
+});
+
+gulp.task("Enable-SOLR-Config", function () {
+    var location = config.websiteRoot + "/App_Config/Include/";
+    var solrexampleFiles = location + "**/*Solr.*config.example";
+    var solrDisabledFiles = location + "**/*Solr.*config.disabled";
+
+    return gulp.src([solrexampleFiles, solrDisabledFiles])
+        .pipe(rimraf({ force: true }))
+        .pipe(rename(function (file) {
+            file.extname = "";
+        })).pipe(gulp.dest(location));
+});
+
+
+/*****************************
   Copy assemblies to all local projects
 *****************************/
 gulp.task("Copy-Local-Assemblies", function () {
